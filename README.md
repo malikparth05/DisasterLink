@@ -1,4 +1,4 @@
-# DisasterLink 🚨
+# DisasterLink
 
 > **A Centralized Disaster Relief Management System (DRMS)**
 >
@@ -6,7 +6,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Key Features](#key-features)
@@ -27,16 +27,16 @@
 
 ---
 
-## 🎯 Overview
+## Overview
 
 **DisasterLink** solves the critical problem of fragmented humanitarian coordination during disasters. By centralizing data on disasters, relief camps, volunteers, families, and resources, it enables coordinators to make data-driven decisions that save lives.
 
 ### The Problem
-- 🚫 Information silos between organizations
-- 🚫 Over-occupied camps while others are empty
-- 🚫 Wasted resources in some areas, critical shortages in others
-- 🚫 Lack of transparency in aid distribution
-- 🚫 Slow family registration and volunteer deployment
+- Information silos between organizations
+- Over-occupied camps while others are empty
+- Wasted resources in some areas, critical shortages in others
+- Lack of transparency in aid distribution
+- Slow family registration and volunteer deployment
 
 ### The Solution
 DisasterLink provides a **single source of truth** for disaster response with:
@@ -48,49 +48,49 @@ DisasterLink provides a **single source of truth** for disaster response with:
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 🏨 Relief Camp Management
+### Relief Camp Management
 - Real-time occupancy tracking (15 active camps)
 - Camp capacity monitoring and visualization
 - Occupancy percentage calculations
 - Multi-organization management
 
-### 👨‍👩‍👧‍👦 Family Registration & Tracking
+### Family Registration & Tracking
 - Register affected families with vulnerability assessment
 - Automatic camp assignment based on capacity
 - Verification status tracking
 - Contact information management
 - 400+ families currently registered
 
-### 📦 Inventory Management
+### Inventory Management
 - Real-time resource tracking across camps
 - Critical shortage alerts
 - Minimum threshold monitoring
 - Resource distribution history
 - 5 resource categories: Food & Water, Shelter, Medicine, Hygiene, Medical Supplies
 
-### 👷 Volunteer Coordination
+### Volunteer Coordination
 - Volunteer specialization tracking
 - Performance leaderboard (units distributed, taskings handled)
 - Camp deployment tracking
 - Organization-based volunteer management
 
-### 📊 Advanced Analytics
+### Advanced Analytics
 - Camp performance dashboards
 - Resource distribution efficiency analysis
 - Volunteer specialization gap analysis
 - Regional risk hotspot detection
 - Cumulative aid distribution charts
 
-### 📋 Audit & Compliance
+### Audit & Compliance
 - Complete event logging
 - Distribution history tracking
 - Status change logs
 - Camp activity timeline
 - 300+ audit logs maintained
 
-### 🔍 Real-time Search
+### Real-time Search
 - Search across camps, families, volunteers
 - District/location filtering
 - Resource name search
@@ -98,30 +98,30 @@ DisasterLink provides a **single source of truth** for disaster response with:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-### **Database**
+### Database
 - **MySQL 8.0** (Aiven Cloud)
 - **9 normalized tables** (3rd Normal Form)
 - **6 views** for reporting
 - **4 stored procedures** for business logic
 - **4 automated triggers** for data integrity
 
-### **Backend**
+### Backend
 - **Node.js + Express.js** (REST API)
 - **MySQL2/Promise** (async database driver)
 - **CORS** enabled for cross-origin requests
 - **Dotenv** for environment configuration
 - **Connection pooling** for performance
 
-### **Frontend**
+### Frontend
 - **HTML5** semantic markup
 - **CSS3** with flexbox/grid layouts
 - **Vanilla JavaScript** (no frameworks, pure DOM)
 - **Chart.js 4.4.2** for visualizations
 - **Responsive design** (mobile-friendly)
 
-### **Design System**
+### Design System
 - **Color Palette**: Earth Brown (#634b30), Crimson (#c1272d), Sand (#e6d5b8)
 - **Typography**: Albert Sans font family
 - **Spacing**: 8px base unit system
@@ -129,45 +129,35 @@ DisasterLink provides a **single source of truth** for disaster response with:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     CLIENT BROWSER                          │
-│                   (Frontend Dashboard)                      │
-│              http://localhost:8080                          │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     │ HTTP Requests/Responses
-                     │ (REST API calls)
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│                  EXPRESS.JS API SERVER                      │
-│                 http://localhost:3001                       │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │ Routes: /api/stats, /api/camps, /api/families, etc. │  │
-│  │ 8 RESTful endpoints with error handling             │  │
-│  │ CORS enabled, JSON responses                        │  │
-│  └──────────────────────────────────────────────────────┘  │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     │ SQL Queries
-                     │ Connection Pooling
-                     │
-┌────────────────────▼────────────────────────────────────────┐
-│              MYSQL DATABASE (Aiven Cloud)                   │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │ Tables: DISASTER, RELIEF_CAMP, VOLUNTEER, etc.     │  │
-│  │ Views: vw_camp_realtime_metrics, etc.              │  │
-│  │ Procedures: sp_RegisterFamilyWithAutoCamp, etc.     │  │
-│  │ Triggers: Auto-occupancy updates, inventory checks  │  │
-│  └──────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
+CLIENT BROWSER
+(Frontend Dashboard)
+http://localhost:8080
+        |
+        | HTTP Requests/Responses
+        | (REST API calls)
+        |
+EXPRESS.JS API SERVER
+http://localhost:3001
+Routes: /api/stats, /api/camps, /api/families, etc.
+8 RESTful endpoints with error handling
+CORS enabled, JSON responses
+        |
+        | SQL Queries
+        | Connection Pooling
+        |
+MYSQL DATABASE (Aiven Cloud)
+Tables: DISASTER, RELIEF_CAMP, VOLUNTEER, etc.
+Views: vw_camp_realtime_metrics, etc.
+Procedures: sp_RegisterFamilyWithAutoCamp, etc.
+Triggers: Auto-occupancy updates, inventory checks
 ```
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 14+ and npm
@@ -195,11 +185,11 @@ python3 -m http.server 8080
 # Open: http://localhost:8080
 ```
 
-**That's it!** Your dashboard is live. 🎉
+That's it! Your dashboard is live.
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Step 1: Clone Repository
 ```bash
@@ -237,7 +227,7 @@ cd ../frontend
 
 ---
 
-## 🗄️ Database Setup
+## Database Setup
 
 ### Option A: Full Setup with All Features
 ```bash
@@ -269,7 +259,7 @@ mysql -u avnadmin -p DisasterLink -e "SHOW TABLES;"
 
 ---
 
-## ▶️ Running the Application
+## Running the Application
 
 ### Terminal 1: Backend API
 ```bash
@@ -278,8 +268,8 @@ npm start
 
 # Expected output:
 # DisasterLink API running on http://localhost:3001
-# ✓ MySQL connection pooling initialized
-# ✓ Ready to accept requests
+# MySQL connection pooling initialized
+# Ready to accept requests
 ```
 
 ### Terminal 2: Frontend Dashboard
@@ -305,7 +295,7 @@ curl http://localhost:3001/api/health
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
 ### Base URL
 ```
@@ -314,7 +304,7 @@ http://localhost:3001/api
 
 ### Endpoints
 
-#### 📊 Dashboard Stats
+#### Dashboard Stats
 ```http
 GET /api/stats
 Response: {
@@ -326,7 +316,7 @@ Response: {
 }
 ```
 
-#### 🏨 Relief Camps
+#### Relief Camps
 ```http
 GET /api/camps
 Response: [
@@ -342,7 +332,7 @@ Response: [
 ]
 ```
 
-#### 👨‍👩‍👧‍👦 Affected Families
+#### Affected Families
 ```http
 GET /api/families
 Response: [
@@ -358,7 +348,7 @@ Response: [
 ]
 ```
 
-#### ⚠️ Disasters
+#### Disasters
 ```http
 GET /api/disasters
 Response: [
@@ -374,7 +364,7 @@ Response: [
 ]
 ```
 
-#### 📦 Inventory Shortages
+#### Inventory Shortages
 ```http
 GET /api/inventory
 Response: [
@@ -389,7 +379,7 @@ Response: [
 ]
 ```
 
-#### 👷 Volunteers
+#### Volunteers
 ```http
 GET /api/volunteers
 Response: [
@@ -403,7 +393,7 @@ Response: [
 ]
 ```
 
-#### 📋 Audit Logs
+#### Audit Logs
 ```http
 GET /api/audit
 Response: [
@@ -417,7 +407,7 @@ Response: [
 ]
 ```
 
-#### ➕ Register Family (POST)
+#### Register Family (POST)
 ```http
 POST /api/register
 Content-Type: application/json
@@ -437,7 +427,7 @@ Response: {
 }
 ```
 
-#### 📦 Resources Summary
+#### Resources Summary
 ```http
 GET /api/resources/summary
 Response: [
@@ -455,7 +445,7 @@ Response: [
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### 9 Core Tables
 
@@ -535,11 +525,11 @@ CREATE TABLE AID_DISTRIBUTION (
 );
 ```
 
-*See `docs/ER_DIAGRAM.md` for complete schema visualization*
+See `docs/ER_DIAGRAM.md` for complete schema visualization.
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 DisasterLink/
@@ -589,50 +579,50 @@ DisasterLink/
 
 ---
 
-## 🎯 Features in Detail
+## Features in Detail
 
 ### Real-Time Dashboard
-- **KPI Cards**: Total camps, occupancy risk, critical shortages, aid units
-- **Camp Occupancy Monitor**: Visual map with location markers
-- **Stock Severity Alerts**: Critical shortages with action buttons
-- **Mission Impact Chart**: Cumulative aid distribution timeline
+- KPI Cards: Total camps, occupancy risk, critical shortages, aid units
+- Camp Occupancy Monitor: Visual map with location markers
+- Stock Severity Alerts: Critical shortages with action buttons
+- Mission Impact Chart: Cumulative aid distribution timeline
 
 ### Searchable Data Tables
 All tables support real-time search:
-- **Camps**: Search by name, district, organization
-- **Families**: Search by name, camp, phone
-- **Volunteers**: Search by name, specialization
-- **Disasters**: Search by name, type, severity
-- **Inventory**: Search by camp, resource, category
-- **Audit Logs**: Search by camp, event type, description
+- Camps: Search by name, district, organization
+- Families: Search by name, camp, phone
+- Volunteers: Search by name, specialization
+- Disasters: Search by name, type, severity
+- Inventory: Search by camp, resource, category
+- Audit Logs: Search by camp, event type, description
 
 ### Family Registration
-- **Smart Auto-Assignment**: Automatically assigns to camp with most available capacity
-- **Vulnerability Tracking**: Records disabilities, children, elderly members
-- **Verification Status**: Marks families as Verified or Pending
-- **Real-Time Feedback**: Success/error messages on registration
+- Smart Auto-Assignment: Automatically assigns to camp with most available capacity
+- Vulnerability Tracking: Records disabilities, children, elderly members
+- Verification Status: Marks families as Verified or Pending
+- Real-Time Feedback: Success/error messages on registration
 
 ### Volunteer Performance
-- **Leaderboard Ranking**: Volunteers ranked by distributions handled
-- **Performance Metrics**: Units distributed, taskings handled
-- **Specialization Tracking**: Medical, Logistics, Administrative, etc.
-- **Camp Deployment**: Track which camps volunteers are deployed to
+- Leaderboard Ranking: Volunteers ranked by distributions handled
+- Performance Metrics: Units distributed, taskings handled
+- Specialization Tracking: Medical, Logistics, Administrative, etc.
+- Camp Deployment: Track which camps volunteers are deployed to
 
 ### Inventory Management
-- **Threshold Monitoring**: Alerts when stock falls below minimum
-- **Real-Time Stock Levels**: Updated as distributions occur
-- **Category Breakdown**: Food & Water, Shelter, Medicine, Hygiene, Medical
-- **Distribution History**: Complete audit trail of all distributions
+- Threshold Monitoring: Alerts when stock falls below minimum
+- Real-Time Stock Levels: Updated as distributions occur
+- Category Breakdown: Food & Water, Shelter, Medicine, Hygiene, Medical
+- Distribution History: Complete audit trail of all distributions
 
 ### Advanced Analytics
-- **Camp Fill Rate**: Occupancy percentage with visual indicators
-- **Regional Risk Analysis**: Identifies high-risk camps needing support
-- **Resource Distribution Efficiency**: Aid per person metrics
-- **Volunteer Gap Analysis**: Staffing levels vs. occupancy
+- Camp Fill Rate: Occupancy percentage with visual indicators
+- Regional Risk Analysis: Identifies high-risk camps needing support
+- Resource Distribution Efficiency: Aid per person metrics
+- Volunteer Gap Analysis: Staffing levels vs. occupancy
 
 ---
 
-## 📸 Dashboard Screenshots
+## Dashboard Screenshots
 
 ### Main Dashboard
 - 4 KPI cards with trend indicators
@@ -672,7 +662,7 @@ All tables support real-time search:
 
 ---
 
-## 📊 Statistics
+## Statistics
 
 ### Database Scope
 ```
@@ -703,14 +693,14 @@ Aid Distributions: 1,500+
 Total Stock: 90,690 units
 
 By Category:
-├── Food & Water: 76,515 units (84%)
-├── Shelter: 7,800 units (8.6%)
-├── Medicine: 4,275 units (4.7%)
-├── Hygiene: 1,250 units (1.4%)
-└── Medical Supplies: 850 units (0.9%)
+- Food & Water: 76,515 units (84%)
+- Shelter: 7,800 units (8.6%)
+- Medicine: 4,275 units (4.7%)
+- Hygiene: 1,250 units (1.4%)
+- Medical Supplies: 850 units (0.9%)
 
 Critical Shortages: 1
-├── Silchar Emergency Hub: -1,200 units of Drinking Water
+- Silchar Emergency Hub: -1,200 units of Drinking Water
 ```
 
 ### Camp Distribution
@@ -725,15 +715,15 @@ Average Camp Size: 100,000 persons
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
-3. **Commit** your changes (`git commit -m 'Add AmazingFeature'`)
-4. **Push** to the branch (`git push origin feature/AmazingFeature`)
-5. **Open** a Pull Request
+1. Fork the repository
+2. Create a feature branch (git checkout -b feature/AmazingFeature)
+3. Commit your changes (git commit -m 'Add AmazingFeature')
+4. Push to the branch (git push origin feature/AmazingFeature)
+5. Open a Pull Request
 
 ### Development Guidelines
 - Follow the existing code style
@@ -743,53 +733,35 @@ Contributions are welcome! Please follow these guidelines:
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-## 📧 Contact & Support
-
-- **Author**: Parth Malik
-- **Email**: malikparth05@gmail.com
-- **GitHub**: https://github.com/malikparth05
-- **Repository**: https://github.com/malikparth05/DisasterLink
-
-### Getting Help
-
-1. **Documentation**: Check `docs/` folder for detailed guides
-2. **Quick Start**: See `QUICK_START_GUIDE.md` for setup help
-3. **API Issues**: Review `API Documentation` section above
-4. **Database Issues**: Check SQL files in `sql/` folder
-
----
-
-## 🎓 Academic Information
+## Academic Information
 
 This is a comprehensive Database Management Systems (DBMS) project demonstrating:
 
-- ✅ **Database Design**: 3rd Normal Form (3NF) schema
-- ✅ **Data Integrity**: Foreign keys, constraints, triggers
-- ✅ **Advanced SQL**: Views, procedures, triggers, transactions
-- ✅ **API Development**: RESTful endpoints with error handling
-- ✅ **Frontend Design**: Responsive UI with real-time search
-- ✅ **Full-Stack Development**: Complete end-to-end solution
+- Database Design: 3rd Normal Form (3NF) schema
+- Data Integrity: Foreign keys, constraints, triggers
+- Advanced SQL: Views, procedures, triggers, transactions
+- API Development: RESTful endpoints with error handling
+- Frontend Design: Responsive UI with real-time search
+- Full-Stack Development: Complete end-to-end solution
 
 ---
 
-## 🚀 Deployment Ready
+## Deployment Ready
 
 DisasterLink is production-ready and can be deployed to:
-- **Heroku** (Backend + Frontend)
-- **AWS** (EC2, RDS, S3)
-- **Google Cloud** (App Engine, Cloud SQL)
-- **Azure** (App Service, Azure Database)
+- Heroku (Backend + Frontend)
+- AWS (EC2, RDS, S3)
+- Google Cloud (App Engine, Cloud SQL)
+- Azure (App Service, Azure Database)
 
 For deployment instructions, see `docs/` folder.
 
 ---
 
-**Built with ❤️ for humanitarian disaster relief coordination**
-
-Last Updated: April 2026
+Built for humanitarian disaster relief coordination
