@@ -119,7 +119,7 @@ ORDER BY aid_units_per_person DESC;
 
 -- C. Volunteer Specialization Gap Analysis
 -- Compares the current volunteer headcount against the camp occupancy to identify staffing gaps
-SELECT 
+SELECT
     c.name AS camp_name,
     c.current_occupancy,
     (SELECT COUNT(*) FROM VOLUNTEER v WHERE v.deployed_camp_id = c.camp_id) AS volunteer_count,
@@ -127,3 +127,41 @@ SELECT
 FROM RELIEF_CAMP c
 HAVING volunteer_count > 0
 ORDER BY refugees_per_volunteer DESC;
+
+-- ============================================================================
+-- 13. SCALAR FUNCTION DEMONSTRATIONS
+-- ============================================================================
+
+-- D. UDF Call: Camp Fill Rate using fn_GetCampFillRate()
+-- Uses our custom scalar function to get occupancy % for every camp in one clean query
+SELECT
+    camp_id,
+    name AS camp_name,
+    total_capacity,
+    current_occupancy,
+    fn_GetCampFillRate(camp_id) AS fill_rate_percent
+FROM RELIEF_CAMP
+ORDER BY fill_rate_percent DESC;
+
+-- E. Date Scalar Functions: Days Active Per Disaster
+-- DATEDIFF calculates how long each disaster has been ongoing
+SELECT
+    name AS disaster_name,
+    type,
+    severity_level,
+    start_date,
+    DATEDIFF(IFNULL(end_date, CURDATE()), start_date) AS days_active,
+    DATE_FORMAT(start_date, '%d %M %Y') AS formatted_start_date
+FROM DISASTER
+ORDER BY days_active DESC;
+
+-- F. String Scalar Functions: Volunteer Contact Directory
+-- UPPER() normalizes names; LENGTH() flags unusually short entries
+SELECT
+    UPPER(full_name) AS volunteer_name_upper,
+    specialization,
+    phone,
+    LENGTH(full_name) AS name_length,
+    availability_status
+FROM VOLUNTEER
+ORDER BY full_name;

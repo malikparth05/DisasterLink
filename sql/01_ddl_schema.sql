@@ -118,6 +118,15 @@ CREATE TABLE AID_DISTRIBUTION (
     INDEX idx_dist_family_res (family_id, resource_id)
 );
 
+-- ============================================================================
+-- SECONDARY INDEXES (Non-FK search columns)
+-- ============================================================================
+-- Speeds up WHERE / ORDER BY queries filtering by disaster type or severity
+CREATE INDEX idx_disaster_type     ON DISASTER (type);
+CREATE INDEX idx_disaster_severity ON DISASTER (severity_level);
+-- Speeds up volunteer lookups by availability status (frequent operational query)
+CREATE INDEX idx_vol_availability  ON VOLUNTEER (availability_status);
+
 -- 9. CAMP_LOGS Table (Schema Refinement)
 -- Tracks the history of changes for accountability and audit trails.
 CREATE TABLE CAMP_LOGS (

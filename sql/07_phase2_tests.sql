@@ -70,11 +70,51 @@ EXPLAIN SELECT * FROM vw_camp_activity_audit WHERE camp_name LIKE '%Guwahati%';
 -- Expected Result 1: Error if camp is occupied (Camp 1 is occupied).
 -- Expected Result 2: Success if camp is empty (We will create a temporary empty camp).
 -- (Try calling this for occupied Camp 1 in Workbench to see the block)
--- CALL sp_DecommissionCamp(1); 
+-- CALL sp_DecommissionCamp(1);
 
 -- Testing success on a new empty camp:
 INSERT INTO RELIEF_CAMP (camp_id, name, total_capacity, status) VALUES (99, 'Decomm Test Camp', 100, 'Operational');
 CALL sp_DecommissionCamp(99);
 SELECT name, status FROM RELIEF_CAMP WHERE camp_id = 99;
 DELETE FROM RELIEF_CAMP WHERE camp_id = 99; -- Cleanup
+
+
+-- 9. TEST: Custom Scalar Function fn_GetCampFillRate()
+-- Calls our UDF directly on every camp and ranks them by how full they are.
+-- Expected Result: Each camp row shows a fill_rate_percent between 0 and 100.
+SELECT
+    camp_id,
+    name AS camp_name,
+    total_capacity,
+    current_occupancy,
+    fn_GetCampFillRate(camp_id) AS fill_rate_percent
+FROM RELIEF_CAMP
+ORDER BY fill_rate_percent DESC;
+-- Expected: The most occupied camp appears first with the highest percentage.
+
+
+-- 10. TEST: Explicit ROLLBACK Verification
+-- Inserts a test resource, then immediately rolls back.
+-- Expected Result: The row should NOT appear in RESOURCE after the rollback.
+START TRANSACTION;
+    INSERT INTO RESOURCE (name, category, unit_of_measure)
+    VALUES ('ROLLBACK_TEST_ITEM', 'Test', 'units');
+    SELECT 'Before rollback — row exists:' AS check_point, name FROM RESOURCE WHERE name = 'ROLLBACK_TEST_ITEM';
+ROLLBACK;
+
+SELECT 'After rollback — row should be gone:' AS check_point, COUNT(*) AS row_count
+FROM RESOURCE WHERE name = 'ROLLBACK_TEST_ITEM';
+-- Expected: row_count = 0, confirming the transaction was fully undone.
+
+
+-- 11. TEST: Scalar Function Showcase (DATEDIFF + DATE_FORMAT + UPPER)
+-- Expected Result: Each disaster shows days active, formatted date, and uppercased name.
+SELECT
+    UPPER(name) AS disaster_name_upper,
+    severity_level,
+    DATE_FORMAT(start_date, '%d %M %Y') AS formatted_start,
+    DATEDIFF(IFNULL(end_date, CURDATE()), start_date) AS days_active
+FROM DISASTER
+ORDER BY days_active DESC;
+-- Expected: Active disasters show a high days_active count; closed ones show exact duration.
 
