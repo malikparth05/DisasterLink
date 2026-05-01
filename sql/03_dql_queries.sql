@@ -125,7 +125,7 @@ SELECT
     (SELECT COUNT(*) FROM VOLUNTEER v WHERE v.deployed_camp_id = c.camp_id) AS volunteer_count,
     ROUND(c.current_occupancy / (SELECT COUNT(*) FROM VOLUNTEER v WHERE v.deployed_camp_id = c.camp_id), 1) AS refugees_per_volunteer
 FROM RELIEF_CAMP c
-HAVING volunteer_count > 0
+WHERE (SELECT COUNT(*) FROM VOLUNTEER v WHERE v.deployed_camp_id = c.camp_id) > 0
 ORDER BY refugees_per_volunteer DESC;
 
 -- ============================================================================
@@ -165,3 +165,102 @@ SELECT
     availability_status
 FROM VOLUNTEER
 ORDER BY full_name;
+
+-- ============================================================================
+-- SECTION G: ADVANCED SQL — Beyond the Basics
+-- ============================================================================
+
+-- G1. EXISTS Subquery: Find camps that have AT LEAST one critical shortage
+-- EXISTS is more efficient than IN for large datasets — stops at first match
+SELECT c.name AS camp_name, c.district
+FROM RELIEF_CAMP c
+WHERE EXISTS (
+    SELECT 1 FROM CAMP_INVENTORY ci
+    WHERE ci.camp_id = c.camp_id
+    AND ci.quantity_available < ci.minimum_threshold
+)
+ORDER BY c.name;
+
+-- G2. NOT EXISTS: Camps with NO shortages (all supplies above threshold)
+SELECT c.name AS camp_name, c.district
+FROM RELIEF_CAMP c
+WHERE NOT EXISTS (
+    SELECT 1 FROM CAMP_INVENTORY ci
+    WHERE ci.camp_id = c.camp_id
+    AND ci.quantity_available < ci.minimum_threshold
+)
+ORDER BY c.name;
+
+-- G3. SELF JOIN: Find pairs of volunteers deployed to the SAME camp
+-- A self join compares a table against itself
+SELECT
+    v1.full_name AS volunteer_1,
+    v2.full_name AS volunteer_2,
+    v1.specialization AS spec_1,
+    v2.specialization AS spec_2,
+    rc.name AS shared_camp
+FROM VOLUNTEER v1
+JOIN VOLUNTEER v2 ON v1.deployed_camp_id = v2.deployed_camp_id
+    AND v1.volunteer_id < v2.volunteer_id   -- prevents duplicates (A,B) and (B,A)
+JOIN RELIEF_CAMP rc ON v1.deployed_camp_id = rc.camp_id
+ORDER BY shared_camp, v1.full_name;
+
+-- G4. FULL OUTER JOIN Simulation (MySQL uses UNION of LEFT + RIGHT JOIN)
+-- Shows ALL families and ALL camps, even if there is no match on either side
+SELECT
+    f.head_of_family_name AS family,
+    rc.name AS camp_name
+FROM AFFECTED_FAMILY f
+LEFT JOIN RELIEF_CAMP rc ON f.camp_id = rc.camp_id
+UNION
+SELECT
+    f.head_of_family_name AS family,
+    rc.name AS camp_name
+FROM AFFECTED_FAMILY f
+RIGHT JOIN RELIEF_CAMP rc ON f.camp_id = rc.camp_id;
+
+-- G5. Nested Subquery with Aggregation:
+-- Find resources whose total inventory across ALL camps exceeds the average
+-- This demonstrates a subquery in the HAVING clause referencing a global aggregate
+SELECT
+    r.name AS resource_name,
+    r.category,
+    SUM(ci.quantity_available) AS total_stock_all_camps
+FROM RESOURCE r
+JOIN CAMP_INVENTORY ci ON r.resource_id = ci.resource_id
+GROUP BY r.resource_id, r.name, r.category
+HAVING SUM(ci.quantity_available) > (
+    SELECT AVG(total_per_resource)
+    FROM (
+        SELECT SUM(quantity_available) AS total_per_resource
+        FROM CAMP_INVENTORY
+        GROUP BY resource_id
+    ) AS resource_totals
+)
+ORDER BY total_stock_all_camps DESC;
+
+-- G6. RANK() Window Function: Rank volunteers by units distributed (no GROUP BY needed)
+-- Window functions are an advanced SQL feature; RANK handles ties correctly
+SELECT
+    v.full_name,
+    v.specialization,
+    COALESCE(SUM(ad.quantity_given), 0) AS total_units,
+    RANK() OVER (ORDER BY COALESCE(SUM(ad.quantity_given), 0) DESC) AS performance_rank
+FROM VOLUNTEER v
+LEFT JOIN AID_DISTRIBUTION ad ON v.volunteer_id = ad.volunteer_id
+GROUP BY v.volunteer_id, v.full_name, v.specialization
+ORDER BY performance_rank;
+
+-- G7. CASE WHEN (Scalar expression): Classify every camp by its risk level inline
+-- Shows conditional logic inside a SELECT without a stored procedure
+SELECT
+    name AS camp_name,
+    ROUND((current_occupancy / total_capacity) * 100, 1) AS fill_pct,
+    CASE
+        WHEN (current_occupancy / total_capacity) >= 0.9 THEN 'CRITICAL — Immediate action required'
+        WHEN (current_occupancy / total_capacity) >= 0.7 THEN 'WARNING — Monitor closely'
+        WHEN (current_occupancy / total_capacity) >= 0.5 THEN 'MODERATE — Acceptable'
+        ELSE 'SAFE — Capacity available'
+    END AS risk_classification
+FROM RELIEF_CAMP
+ORDER BY fill_pct DESC;

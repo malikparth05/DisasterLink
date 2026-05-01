@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Warm Command | DisasterLink</title>
+  <title>DisasterLink | Command</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- Toast container -->
+  <div id="toastContainer"></div>
+
   <div class="layout">
 
     <!-- SIDEBAR -->
-    <nav class="sidebar" id="sidebar">
+    <nav class="sidebar">
       <div class="sidebar-brand">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
         </svg>
-        <span>Warm Command</span>
+        <span>DisasterLink</span>
       </div>
 
       <ul class="nav-list">
@@ -43,22 +48,22 @@
           Inventory
         </a></li>
         <li><a href="#" class="nav-item" data-section="audit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           Aid Logs
         </a></li>
         <li><a href="#" class="nav-item" data-section="volunteers">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
           Volunteers
         </a></li>
-      </ul>
-
-      <ul class="nav-list" style="margin-top: auto;">
-        <li><a href="#" class="nav-item">
+        <li><a href="#" class="nav-item" data-section="reports">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z"/></svg>
           Reports
         </a></li>
-        <li><a href="#" class="nav-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1V11a2 2 0 01-2-2 2 2 0 012-2v-.09A1.65 1.65 0 003 9l.33-1.82.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      </ul>
+
+      <ul class="nav-list" style="margin-top: auto;">
+        <li><a href="#" class="nav-item" data-section="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
           Settings
         </a></li>
       </ul>
@@ -74,24 +79,46 @@
     <!-- MAIN AREA -->
     <div class="main">
       <header class="topbar">
-        <div class="topbar-left">
-          <span class="topbar-label">Active Disaster</span>
-          <div class="topbar-title" id="activeDisaster">Hurricane Zeta Response ▾</div>
+
+        <!-- Disaster context selector -->
+        <div class="topbar-selector" id="disasterSelectorWrap">
+          <span class="topbar-label">Disaster Context</span>
+          <div class="topbar-title" id="activeDisasterTitle">Loading… <span class="selector-chevron">▾</span></div>
+          <div class="topbar-dropdown" id="disasterDropdown"></div>
         </div>
 
         <div class="topbar-actions">
           <div class="search-bar">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8e8e93" stroke-width="3"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" placeholder="Search resources, camps, or staff" />
+            <input type="text" id="globalSearch" placeholder="Search current section…" />
           </div>
 
-          <div class="user-profile">
+          <!-- Profile with dropdown -->
+          <div class="user-profile" id="profileWrap">
             <div class="user-text">
-              <span class="user-name">Elena Rodriguez</span>
-              <span class="user-role">Regional Commander</span>
+              <span class="user-name" id="profileDisplayName">Field Commander</span>
+              <span class="user-role" id="profileDisplayRole">Regional Operations</span>
             </div>
             <div class="user-avatar">
-              <img src="https://ui-avatars.com/api/?name=Elena+Rodriguez&background=e6d5b8&color=634b30&bold=true" alt="User" />
+              <img id="profileAvatar" src="https://ui-avatars.com/api/?name=Field+Commander&background=e6d5b8&color=634b30&bold=true" alt="User" />
+            </div>
+            <div class="profile-dropdown" id="profileDropdown">
+              <div class="profile-dropdown-header" id="profileDropdownName">Field Commander</div>
+              <div class="profile-dropdown-role" id="profileDropdownRole">Regional Operations</div>
+              <div class="profile-dropdown-divider"></div>
+              <div class="profile-dropdown-item" id="editProfileBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Edit Profile
+              </div>
+              <div class="profile-dropdown-item" onclick="activateSection('settings')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9"/></svg>
+                Settings
+              </div>
+              <div class="profile-dropdown-divider"></div>
+              <div class="profile-dropdown-item" onclick="activateSection('reports')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z"/></svg>
+                View Reports
+              </div>
             </div>
           </div>
         </div>
@@ -102,251 +129,419 @@
           <h1 id="pageTitle" style="font-size: 24px; font-weight: 800; color: var(--text-base);">Mission Dashboard</h1>
         </div>
 
-        <!-- ===== DASHBOARD SECTION ===== -->
+        <!-- ===== DASHBOARD ===== -->
         <section class="section active" id="sec-dashboard">
-          
           <div class="hero-banner">
             <div class="hero-overlay"></div>
             <div class="hero-content">
               <div class="hero-text">
-                <span class="hero-tag">⚠ Critical Phase</span>
-                <h2>Operation Calm Coast</h2>
-                <p>Coordinating emergency relief and long-term recovery for 12,400 displaced residents across the Gulf region.</p>
+                <span class="hero-tag" id="heroTag">Live Operations</span>
+                <h2 id="heroTitle">DisasterLink Command</h2>
+                <p id="heroDesc">Real-time coordination of relief camps, volunteers, and aid distribution across all active disaster zones.</p>
               </div>
               <div class="hero-btns">
-                <button class="btn-hero btn-hero--white">
+                <button class="btn-hero btn-hero--white" id="briefBtn">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                   Operational Brief
                 </button>
-                <button class="btn-hero btn-hero--brown">
+                <button class="btn-hero btn-hero--brown" onclick="activateSection('families')">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                  New Deployment
+                  Register Family
                 </button>
               </div>
             </div>
           </div>
 
           <div class="kpi-row">
-            <div class="kpi-card">
+            <div class="kpi-card" style="cursor:pointer" onclick="activateSection('camps')">
               <div class="kpi-head">
                 <div class="kpi-icon-wrap kpi-icon--sand">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
                 </div>
-                <div class="kpi-trend trend--up">+2 New</div>
+                <div class="kpi-trend trend--up">Operational</div>
               </div>
               <div class="kpi-body">
                 <div class="kpi-info-label">Active Camps</div>
-                <div class="kpi-info-value" id="kpi-camps">32</div>
+                <div class="kpi-info-value" id="kpi-camps">—</div>
               </div>
             </div>
-
             <div class="kpi-card">
               <div class="kpi-head">
                 <div class="kpi-icon-wrap kpi-icon--rose">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
-                <div class="kpi-trend trend--warn">92% Peak</div>
+                <div class="kpi-trend" id="kpi-occ-pct">—%</div>
               </div>
               <div class="kpi-body">
                 <div class="kpi-info-label">Occupancy Risk</div>
-                <div class="kpi-info-value" id="kpi-occupancy">Critical</div>
+                <div class="kpi-info-value" id="kpi-occupancy">—</div>
               </div>
             </div>
-
-            <div class="kpi-card">
+            <div class="kpi-card" style="cursor:pointer" onclick="activateSection('inventory')">
               <div class="kpi-head">
                 <div class="kpi-icon-wrap kpi-icon--emerald">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
                 </div>
-                <div class="kpi-trend">8.2k Liters</div>
+                <div class="kpi-trend trend--warn">Below Threshold</div>
               </div>
               <div class="kpi-body">
-                <div class="kpi-info-label">Critical Stock Alerts</div>
-                <div class="kpi-info-value" id="kpi-shortages">04</div>
+                <div class="kpi-info-label">Stock Alerts</div>
+                <div class="kpi-info-value" id="kpi-shortages">—</div>
               </div>
             </div>
-
-            <div class="kpi-card">
+            <div class="kpi-card" style="cursor:pointer" onclick="activateSection('disasters')">
               <div class="kpi-head">
                 <div class="kpi-icon-wrap kpi-icon--blue">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="3" width="15" height="13"/><polyline points="16 8 20 8 23 11 23 16 16 16"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 </div>
-                <div class="kpi-trend trend--up">↑ 12%</div>
+                <div class="kpi-trend trend--warn">Ongoing</div>
               </div>
               <div class="kpi-body">
-                <div class="kpi-info-label">Aid Today</div>
-                <div class="kpi-info-value" id="kpi-aid">1.2M</div>
+                <div class="kpi-info-label">Active Disasters</div>
+                <div class="kpi-info-value" id="kpi-disasters">—</div>
               </div>
             </div>
           </div>
 
           <div class="split-panel">
-            <!-- Map Panel -->
             <div class="panel-card">
-              <div class="panel-header">
-                <h3>Camp Occupancy Monitoring</h3>
-                <div class="hero-btns"> <!-- Reusing styling -->
-                   <button class="btn-hero btn-hero--white" style="font-size: 10px; padding: 6px 12px;">Map View</button>
-                   <button class="btn-hero btn-hero--white" style="font-size: 10px; padding: 6px 12px; opacity: 0.6;">List View</button>
+              <div class="panel-header"><h3>Analytics Overview</h3></div>
+              <div class="chart-grid">
+                <div class="chart-box">
+                  <h4 class="chart-box-title">Camp Fill Rates</h4>
+                  <canvas id="campOccChart" height="220"></canvas>
+                </div>
+                <div class="chart-box">
+                  <h4 class="chart-box-title">Disaster Severity</h4>
+                  <canvas id="disasterSevChart" height="220"></canvas>
                 </div>
               </div>
-              <div class="map-placeholder">
-                <!-- Visual Markers derived from camp locations -->
-                <div class="map-point point--red" style="top: 30%; left: 20%;"></div>
-                <div class="map-point point--green" style="top: 60%; left: 70%;"></div>
-              </div>
-              <div class="camp-preview-row" id="campPreviewList">
-                <!-- Dynamic tiny camp summary cards -->
-              </div>
-              <div class="chart-container" style="margin-top: 24px; padding: 24px; background: #fff; border-radius: 16px; border: 1px solid #f2f2f5;">
-                <h4 style="font-size: 12px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px;">Mission Fulfillment (Cumulative Distributions)</h4>
-                <canvas id="impactChart" height="180"></canvas>
+              <div class="vol-chart-container" style="margin-top:16px;">
+                <h4 style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);margin-bottom:14px;">Top Volunteer Performance</h4>
+                <canvas id="impactChart" height="160"></canvas>
               </div>
             </div>
-
-            <!-- Severity Panel -->
             <div class="panel-card">
               <div class="panel-header">
                 <h3>Stock Severity</h3>
-                <a href="#" style="font-size: 11px; font-weight: 800; color: var(--text-muted);">Manage All</a>
+                <a href="#" onclick="activateSection('inventory');return false;" style="font-size:11px;font-weight:800;color:var(--text-muted)">View All</a>
               </div>
               <div class="severity-list" id="severityList">
-                <!-- Dynamic alerts -->
-                <div class="severity-card severity-card--crit">
-                  <div class="sev-icon sev-icon--red">💊</div>
-                  <div class="sev-body">
-                    <h4>Critical Low: Antibiotics</h4>
-                    <p>Current stock will deplete in 14 hours at current rate.</p>
-                    <button class="sev-btn btn-red">Expedite Order</button>
-                  </div>
-                </div>
-                <div class="severity-card severity-card--warn">
-                  <div class="sev-icon sev-icon--amber">💧</div>
-                  <div class="sev-body">
-                    <h4>Warning: Potable Water</h4>
-                    <p>Central Zone B reaching reserve thresholds.</p>
-                    <button class="sev-btn btn-amber">Reallocate</button>
-                  </div>
-                </div>
+                <p style="font-size:12px;color:var(--text-muted);padding:10px">Loading alerts…</p>
               </div>
             </div>
           </div>
-
         </section>
 
-        <!-- ===== OTHER SECTIONS (TABLES) ===== -->
-        <!-- These will maintain their data table structure but with new styling -->
-        
+        <!-- ===== CAMPS ===== -->
         <section class="section" id="sec-camps">
-          <h3>Camps Directory</h3>
-          <div class="table-container" style="margin-top: 20px;">
-            <table class="data-table" id="campsTable">
-              <thead><tr><th>Name</th><th>District</th><th>Org</th><th>Occupancy</th><th>Fill Rate</th></tr></thead>
+          <div class="section-header-flex">
+            <h3>Relief Camp Directory</h3>
+            <button class="btn-hero btn-hero--brown" onclick="openAddModal('camps')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Camp
+            </button>
+          </div>
+          <div class="section-toolbar" style="margin-top:16px">
+            <select class="filter-select" id="campsDistrictFilter">
+              <option value="">All Districts</option>
+            </select>
+            <select class="filter-select" id="campsSortSelect">
+              <option value="id_desc">Newest First</option>
+              <option value="fill_desc">Occupancy (High-Low)</option>
+              <option value="fill_asc">Occupancy (Low-High)</option>
+            </select>
+            <span class="result-count" id="campsCount"></span>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead><tr>
+                <th class="sortable" data-col="camp_name">Camp Name <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="district">District <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="total_capacity">Capacity <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="occupancy_percentage">Fill % <span class="sort-icon">↕</span></th>
+                <th>Managing Org</th>
+              </tr></thead>
               <tbody id="campsBody"></tbody>
             </table>
           </div>
+          <div class="pager-container" id="campsPager"></div>
         </section>
 
+        <!-- ===== INVENTORY ===== -->
         <section class="section" id="sec-inventory">
-          <h3>Inventory Monitor</h3>
-          <div class="table-container" style="margin-top: 20px;">
-            <table class="data-table" id="inventoryTable">
-              <thead><tr><th>Camp</th><th>Resource</th><th>Stock</th><th>Threshold</th><th>Status</th></tr></thead>
+          <div class="section-header-flex">
+            <h3>Critical Shortages & Inventory</h3>
+            <button class="btn-hero btn-hero--brown" onclick="openAddModal('inventory')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Item
+            </button>
+          </div>
+          <div class="section-toolbar" style="margin-top:16px">
+            <select class="filter-select" id="inventoryCategoryFilter">
+              <option value="">All Categories</option>
+              <option value="Medical">Medical</option>
+              <option value="Food">Food</option>
+              <option value="Water">Water</option>
+              <option value="Sanitation">Sanitation</option>
+              <option value="Shelter">Shelter</option>
+            </select>
+            <span class="result-count" id="inventoryCount"></span>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead><tr>
+                <th class="sortable" data-col="camp_name">Camp <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="resource_name">Resource <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="category">Category <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="quantity_available">Available <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="shortage_amount">Shortage <span class="sort-icon">↕</span></th>
+              </tr></thead>
               <tbody id="inventoryBody"></tbody>
             </table>
           </div>
+          <div class="pager-container" id="inventoryPager"></div>
         </section>
 
+        <!-- ===== DISASTERS ===== -->
         <section class="section" id="sec-disasters">
-          <h3>Operational Disasters</h3>
-          <div class="table-container" style="margin-top: 20px;">
-            <table class="data-table" id="disastersTable">
-              <thead><tr><th>ID</th><th>Name</th><th>Type</th><th>Severity</th><th>Start Date</th><th>Status</th></tr></thead>
+          <div class="section-header-flex">
+            <h3>Disaster Records</h3>
+            <button class="btn-hero btn-hero--brown" onclick="openAddModal('disasters')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              New Disaster
+            </button>
+          </div>
+          <div class="section-toolbar" style="margin-top:16px">
+            <select class="filter-select" id="disastersSeverityFilter">
+              <option value="">All Severities</option>
+              <option>Low</option><option>Moderate</option><option>High</option><option>Critical</option>
+            </select>
+            <select class="filter-select" id="disastersStatusFilter">
+              <option value="">All Status</option>
+              <option>Active</option><option>Monitored</option><option>Closed</option>
+            </select>
+            <span class="result-count" id="disastersCount"></span>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead><tr>
+                <th class="sortable" data-col="name">Disaster Name <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="type">Type <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="severity_level">Severity <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="start_date">Start Date <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="end_date">End Date <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="status">Status <span class="sort-icon">↕</span></th>
+                <th>Actions</th>
+              </tr></thead>
               <tbody id="disastersBody"></tbody>
             </table>
           </div>
+          <div class="pager-container" id="disastersPager"></div>
         </section>
 
+        <!-- ===== FAMILIES ===== -->
         <section class="section" id="sec-families">
-          <h3>Family Registry</h3>
-          <div class="table-container" style="margin-top: 20px;">
-            <table class="data-table" id="familiesTable">
-              <thead><tr><th>Head of Family</th><th>Relief Camp</th><th>Members</th><th>Registered</th><th>Status</th></tr></thead>
+          <div class="section-header-flex">
+            <h3>Affected Families Directory</h3>
+            <button class="btn-hero btn-hero--brown" onclick="openAddModal('families')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Register Family
+            </button>
+          </div>
+          <div class="section-toolbar" style="margin-top:16px">
+            <select class="filter-select" id="familiesVerifFilter">
+              <option value="">All Status</option>
+              <option value="Verified">Verified</option>
+              <option value="Pending">Pending</option>
+            </select>
+            <label class="filter-toggle">
+              <input type="checkbox" id="familiesVulnerableFilter" /> Vulnerable Only
+            </label>
+            <span class="result-count" id="familiesCount"></span>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead><tr>
+                <th class="sortable" data-col="head_of_family_name">Head of Family <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="camp_name">Camp <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="total_members">Members <span class="sort-icon">↕</span></th>
+                <th>Flags</th>
+                <th class="sortable" data-col="registration_date">Registered <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="verification_status">Status <span class="sort-icon">↕</span></th>
+              </tr></thead>
               <tbody id="familiesBody"></tbody>
             </table>
           </div>
+          <div class="pager-container" id="familiesPager"></div>
         </section>
 
+        <!-- ===== AUDIT ===== -->
         <section class="section" id="sec-audit">
           <h3>Operational Audit Logs</h3>
-          <div class="table-container" style="margin-top: 20px;">
-            <table class="data-table" id="auditTable">
-              <thead><tr><th>Timestamp</th><th>Relief Camp</th><th>Event</th><th>Description</th></tr></thead>
+          <div class="section-toolbar" style="margin-top:16px">
+            <select class="filter-select" id="auditTypeFilter">
+              <option value="">All Events</option>
+              <option value="Registration">Registration</option>
+              <option value="Transfer_In">Transfer In</option>
+              <option value="Transfer_Out">Transfer Out</option>
+              <option value="Supply_Alert">Supply Alert</option>
+              <option value="Status_Change">Status Change</option>
+            </select>
+            <span class="result-count" id="auditCount"></span>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead><tr>
+                <th class="sortable" data-col="log_timestamp">Timestamp <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="camp_name">Camp <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="event_type">Event <span class="sort-icon">↕</span></th>
+                <th>Description</th>
+              </tr></thead>
               <tbody id="auditBody"></tbody>
             </table>
           </div>
+          <div class="pager-container" id="auditPager"></div>
         </section>
 
+        <!-- ===== VOLUNTEERS ===== -->
         <section class="section" id="sec-volunteers">
-          <h3>Volunteer Performance Leaderboard</h3>
-          <div class="table-container" style="margin-top: 20px;">
-            <table class="data-table" id="volunteersTable">
-              <thead><tr><th>Rank</th><th>Name</th><th>Specialization</th><th>Taskings</th><th>Aid Units Handled</th></tr></thead>
+          <div class="section-header-flex">
+            <h3>Volunteer Workforce</h3>
+            <button class="btn-hero btn-hero--brown" onclick="openAddModal('volunteers')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Volunteer
+            </button>
+          </div>
+          <div class="section-toolbar" style="margin-top:16px">
+            <select class="filter-select" id="volunteersSpecFilter">
+              <option value="">All Specializations</option>
+              <option>Medical</option>
+              <option>Logistics</option>
+              <option>Rescue</option>
+              <option>Counseling</option>
+              <option>First Aid</option>
+            </select>
+            <span class="result-count" id="volunteersCount"></span>
+          </div>
+          <div class="vol-chart-container" style="margin-top:16px">
+            <h4>Top 5 by Aid Units Handled</h4>
+            <canvas id="volunteerPerfChart" height="160"></canvas>
+          </div>
+          <div class="section-toolbar">
+            <span class="result-count" id="volunteersCount"></span>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead><tr>
+                <th>Rank</th>
+                <th class="sortable" data-col="full_name">Name <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="specialization">Specialization <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="total_distributions_handled">Taskings <span class="sort-icon">↕</span></th>
+                <th class="sortable" data-col="units_distributed">Aid Units <span class="sort-icon">↕</span></th>
+              </tr></thead>
               <tbody id="volunteersBody"></tbody>
             </table>
           </div>
+          <div class="pager-container" id="volunteersPager"></div>
         </section>
 
-        <section class="section" id="sec-register">
-          <div class="form-container">
+        <!-- ===== REPORTS ===== -->
+        <section class="section" id="sec-reports">
+          <h3>Mission Reports</h3>
+          <div class="kpi-row" id="reportKpis" style="margin-top:20px"></div>
+          <div class="split-panel" style="margin-top:24px">
             <div class="panel-card">
-              <h3>Register New Family</h3>
-              <form id="registerForm" class="register-form" style="border:none; padding:0; margin-top: 20px;">
-                <div class="form-field">
-                  <label>Head of Family</label>
-                  <input type="text" id="f_head" required />
-                </div>
-                <div class="form-field">
-                  <label>Total Members</label>
-                  <input type="number" id="f_members" required />
-                </div>
-                <div class="form-field">
-                  <label>Contact Phone</label>
-                  <input type="tel" id="f_phone" />
-                </div>
-                <button type="submit" class="btn-hero btn-hero--brown">Register Family</button>
-              </form>
+              <div class="panel-header"><h3>Aid by Resource Category</h3></div>
+              <div class="chart-box" style="height:280px">
+                <canvas id="reportResourceChart"></canvas>
+              </div>
+            </div>
+            <div class="panel-card">
+              <div class="panel-header"><h3>Family Vulnerability</h3></div>
+              <div class="chart-box" style="height:280px">
+                <canvas id="reportVulnChart"></canvas>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- Add rest similarly... -->
+        <!-- ===== SETTINGS ===== -->
+        <section class="section" id="sec-settings">
+          <h3>Settings</h3>
+          <div class="split-panel" style="margin-top:24px">
+            <div class="panel-card">
+              <div class="panel-header"><h3>Profile</h3></div>
+              <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+                <img id="settingsAvatar" src="https://ui-avatars.com/api/?name=Field+Commander&background=e6d5b8&color=634b30&bold=true&size=64" style="width:64px;height:64px;border-radius:50%" alt="Avatar" />
+                <div>
+                  <div style="font-size:16px;font-weight:800" id="settingsDisplayName">Field Commander</div>
+                  <div style="font-size:12px;color:var(--text-muted);font-weight:600" id="settingsDisplayRole">Regional Operations</div>
+                </div>
+              </div>
+              <form id="settingsProfileForm">
+                <div class="form-field">
+                  <label>Display Name</label>
+                  <input type="text" id="settingsName" />
+                </div>
+                <div class="form-field">
+                  <label>Role / Title</label>
+                  <input type="text" id="settingsRole" />
+                </div>
+                <button type="submit" class="btn-hero btn-hero--brown">Save Profile</button>
+              </form>
+            </div>
+            <div class="panel-card">
+              <div class="panel-header"><h3>System Status</h3></div>
+              <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px">
+                <div class="setting-row">
+                  <span>API Server</span>
+                  <span id="settingsApiStatus" class="badge badge--pending">Checking…</span>
+                </div>
+                <div class="setting-row">
+                  <span>Database</span>
+                  <span id="settingsDbStatus" class="badge badge--pending">—</span>
+                </div>
+                <div class="setting-row">
+                  <span>API Endpoint</span>
+                  <code style="font-size:11px;color:var(--text-muted)">http://localhost:3001</code>
+                </div>
+                <div class="setting-row">
+                  <span>Frontend</span>
+                  <code style="font-size:11px;color:var(--text-muted)">http://localhost:5500</code>
+                </div>
+                <div class="setting-row">
+                  <span>Total Records</span>
+                  <span id="settingsRecordCount" style="font-size:13px;font-weight:700;color:var(--bg-sidebar)">—</span>
+                </div>
+              </div>
+              <button class="btn-hero btn-hero--white" style="margin-top:24px;width:100%" onclick="refreshAllData()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+                Refresh All Data
+              </button>
+            </div>
+          </div>
+        </section>
 
       </main>
     </div>
   </div>
 
-  <script src="app.js"></script>
-
   <!-- OPERATIONAL BRIEF MODAL -->
   <div class="modal-overlay" id="briefModal">
     <div class="modal-card">
       <div class="modal-header">
-        <h2 style="font-size: 20px; font-weight: 800; color: var(--bg-sidebar);">Mission Impact Strategy</h2>
+        <h2 style="font-size:20px;font-weight:800;color:var(--bg-sidebar)">Mission Impact Strategy</h2>
         <button class="close-modal" id="closeBrief">&times;</button>
       </div>
-      <div class="modal-body" style="margin-top: 24px;">
-        <div class="brief-item" style="margin-bottom: 24px;">
-          <span class="hero-tag" style="background: var(--crimson);">The Problem</span>
-          <p style="font-size: 14px; line-height: 1.6; color: var(--text-mid); margin-top: 8px;">
-            Fragmented humanitarian coordination and data silos lead to life-critical delays in resource allocation during regional disasters. Managing 1,500+ displaced individuals requires a unified, high-performance database with zero room for record loss.
-          </p>
+      <div style="margin-top:24px">
+        <div style="margin-bottom:24px">
+          <span class="hero-tag" style="background:var(--crimson)">The Problem</span>
+          <p style="font-size:14px;line-height:1.6;color:var(--text-mid);margin-top:8px">Fragmented humanitarian coordination and data silos lead to life-critical delays in resource allocation during regional disasters.</p>
         </div>
-        <div class="brief-item">
-          <span class="hero-tag" style="background: var(--emerald);">The Resolution</span>
-          <p style="font-size: 14px; line-height: 1.6; color: var(--text-mid); margin-top: 8px;">
-            DisasterLink implements a <strong>3NF Normalised Schema</strong> and <strong>ACID-Compliant Transactions</strong> to ensure that every aid unit and family registration is permanent and instantly visible across the command chain. With our <strong>Elite Performance Indexing</strong>, we've achieved sub-millisecond retrieval of critical hotspots across 15 active relief camps.
-          </p>
+        <div>
+          <span class="hero-tag" style="background:var(--emerald)">The Resolution</span>
+          <p style="font-size:14px;line-height:1.6;color:var(--text-mid);margin-top:8px">DisasterLink implements a <strong>3NF Normalised Schema</strong> and <strong>ACID-Compliant Transactions</strong> with automated triggers, views, and stored procedures for zero-downtime relief operations.</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -354,5 +549,62 @@
       </div>
     </div>
   </div>
+
+  <!-- ROW DETAIL MODAL -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="detailTitle" style="font-size:18px;font-weight:800;color:var(--bg-sidebar)"></h2>
+        <button class="close-modal" onclick="closeModal('detailModal')">&times;</button>
+      </div>
+      <div id="detailBody" style="margin-top:20px"></div>
+      <div class="modal-footer">
+        <button class="btn-hero btn-hero--white" onclick="closeModal('detailModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE EDIT MODAL -->
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal-card" style="max-width:420px">
+      <div class="modal-header">
+        <h2 style="font-size:18px;font-weight:800;color:var(--bg-sidebar)">Edit Profile</h2>
+        <button class="close-modal" onclick="closeModal('profileModal')">&times;</button>
+      </div>
+      <div style="margin-top:20px">
+        <div class="form-field">
+          <label>Display Name</label>
+          <input type="text" id="modalProfileName" />
+        </div>
+        <div class="form-field">
+          <label>Role / Title</label>
+          <input type="text" id="modalProfileRole" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-hero btn-hero--white" onclick="closeModal('profileModal')">Cancel</button>
+        <button class="btn-hero btn-hero--brown" id="saveProfileBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD ENTRY MODAL -->
+  <div class="modal-overlay" id="addModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="addModalTitle" style="font-size:18px;font-weight:800;color:var(--bg-sidebar)">Add New Entry</h2>
+        <button class="close-modal" onclick="closeModal('addModal')">&times;</button>
+      </div>
+      <form id="addEntryForm" style="margin-top:20px">
+        <div id="addModalFields"></div>
+        <div class="modal-footer" style="margin-top:24px">
+          <button type="button" class="btn-hero btn-hero--white" onclick="closeModal('addModal')">Cancel</button>
+          <button type="submit" class="btn-hero btn-hero--brown">Save Entry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

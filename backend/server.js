@@ -14,9 +14,16 @@ const disastersRouter = require('./routes/disasters');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const db = require('./db');
 
 app.use(cors());
 app.use(express.json());
+
+// Logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
 
 app.use('/api/stats',      statsRouter);
 app.use('/api/camps',      campsRouter);
@@ -29,9 +36,23 @@ app.use('/api/resources',  resourcesRouter);
 app.use('/api/disasters',  disastersRouter);
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date() });
+  res.json({ status: 'ok', timestamp: new Date(), db: 'connected' });
 });
 
-app.listen(PORT, () => {
-  console.log(`DisasterLink API running on http://localhost:${PORT}`);
-});
+// Test DB Connection and Start
+(async () => {
+  try {
+    console.log('Testing database connection...');
+    await db.query('SELECT 1');
+    console.log('✅ Database connected successfully.');
+
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 DisasterLink API running on http://localhost:${PORT}`);
+      console.log(`📡 Access via http://127.0.0.1:${PORT}`);
+    });
+  } catch (err) {
+    console.error('❌ Database connection failed!');
+    console.error(err.message);
+    process.exit(1);
+  }
+})();
